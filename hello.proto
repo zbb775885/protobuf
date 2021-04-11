@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package proto;
+
+import "google/api/annotations.proto";
+
+
+message StringMessage {
+  string value = 1;
+}
+
+//定义RPC服务
+service HelloService {
+  rpc Hello (StringMessage) returns (StringMessage) {
+    option (google.api.http) = {
+      post: "/v1/hello"
+      body: "*"
+    };
+  }
+}
